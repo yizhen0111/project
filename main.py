@@ -8,6 +8,7 @@ def main(argv):
     filename = argv[0] if len(argv) > 0 else default_file
     # Loads an image
     src = cv.imread(cv.samples.findFile(filename), cv.IMREAD_COLOR)
+
     # Check if image is loaded fine
     if src is None:
         print('Error opening image!')
@@ -15,8 +16,14 @@ def main(argv):
         return -1
 
     gray = cv.cvtColor(src, cv.COLOR_BGR2GRAY)
-
     gray = cv.medianBlur(gray, 5)
+
+    #gray
+    #cv.imshow("test", gray)
+    #cv.waitKey(0)
+    #return
+
+
 
     rows = gray.shape[0]
     circles = cv.HoughCircles(
@@ -35,6 +42,11 @@ def main(argv):
         circles = np.uint16(np.around(circles))
         for i in circles[0, :]:
             center = (i[0], i[1])
+
+            x = center[0]
+            y = center[1]
+            print(x)
+            print(y)
 
             # circle center 圓心
             cv.circle(src,
