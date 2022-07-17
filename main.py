@@ -33,7 +33,7 @@ def main(argv):
         rows / 8,  # 行
         param1=100,  # 內部邊緣監測的上限值
         param2=30,  # 中心檢測值
-        minRadius=1,  # 最小半徑 的判斷
+        minRadius=20,  # 最小半徑 的判斷
         maxRadius=100  # 最大半徑 的判斷
     )
 
@@ -45,14 +45,13 @@ def main(argv):
 
             x = center[0]
             y = center[1]
-            print(x)
-            print(y)
+
 
             # circle center 圓心
             cv.circle(src,
                       center,  # 圓心位置
                       1,  # 繪製圓形的半徑
-                      (0, 100, 100),  # 線條顏色
+                      (0, 0, 255),  # 線條顏色
                       3  # 線條寬度
             )
 
@@ -61,9 +60,51 @@ def main(argv):
             cv.circle(src,
                       center,  # 圓心位置
                       radius,  # 半徑長度
-                      (255, 0, 255),  # 線條顏色
-                      3  # 線條寬度
+                      (0, 0, 0),  # 線條顏色
+                      2  # 線條寬度
             )
+
+            z = radius/2
+            z = int(z)
+            print(z)
+
+            # 右塞
+
+            r = x+z
+            cv.circle(src,
+                      (r,y),  # 圓心位置
+                      1,  # 繪製圓形的半徑
+                      (0, 100, 100),  # 線條顏色
+                      3  # 線條寬度
+                      )
+            print(1)
+
+            # 左塞
+            l = x-z
+            cv.circle(src,
+                      (l, y),  # 圓心位置
+                      1,  # 繪製圓形的半徑
+                      (0, 100, 100),  # 線條顏色
+                      3  # 線條寬度
+                      )
+
+            # 上塞
+            u = y+z
+            cv.circle(src,
+                      (x, u),  # 圓心位置
+                      1,  # 繪製圓形的半徑
+                      (0, 100, 100),  # 線條顏色
+                      3  # 線條寬度
+                      )
+
+            # 下塞
+            d = y-z
+            cv.circle(src,
+                      (x, d),  # 圓心位置
+                      1,  # 繪製圓形的半徑
+                      (0, 100, 100),  # 線條顏色
+                      3  # 線條寬度
+                      )
 
     cv.imshow("detected circles", src)
     cv.waitKey(0)
@@ -72,4 +113,4 @@ def main(argv):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+   main(sys.argv[1:])

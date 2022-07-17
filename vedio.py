@@ -36,7 +36,7 @@ while True:
             print(y)
 
             # circle center 圓心
-            cv2.circle(cap,
+            cv2.circle(gray,
                       center,  # 圓心位置
                       1,  # 繪製圓形的半徑
                       (0, 100, 100),  # 線條顏色
@@ -45,7 +45,7 @@ while True:
 
             # circle outline
             radius = i[2]
-            cv.circle(cap,
+            cv.circle(gray,
                       center,  # 圓心位置
                       radius,  # 半徑長度
                       (255, 0, 255),  # 線條顏色
